@@ -1,7 +1,11 @@
 
 const Pagination = ({ totalCount, limit, start, setStart, currentPage, setCurrentPage, setLoading, loadScreen = false }) => {
 
-    const strings = useLocalization();
+    console.log("totalCount: " + totalCount);
+    console.log("limit: " + limit);
+    console.log("start: " + start);
+    console.log("currentPage: " + currentPage);
+    console.log("loadScreen: " + loadScreen);
 
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(totalCount / limit); i++) {
@@ -12,9 +16,9 @@ const Pagination = ({ totalCount, limit, start, setStart, currentPage, setCurren
         <>
             {pageNumbers.length > 1 && (
                 <div>
-                    <ul className="flex gap-1 justify-end mt-4">
+                    <ul className="flex gap-1 justify-end mb-4">
                         <li>
-                            <button type="button" className="button hover-effect h-9 w-14 cursor-pointer hover:bg-card focus:bg-primary focus:text-white"
+                            <button type="button" className="button hover-effect h-9 w-14 cursor-pointer bg-primary text-white"
                                 onClick={() => {
                                     if (currentPage !== 1) {
                                         setStart(start - limit);
@@ -38,7 +42,7 @@ const Pagination = ({ totalCount, limit, start, setStart, currentPage, setCurren
                         ))}
 
                         <li>
-                            <button type="button" className="button hover-effect h-9 w-14 cursor-pointer hover:bg-card focus:bg-blue focus:text-white"
+                            <button type="button" className="button hover-effect h-9 w-14 cursor-pointer bg-primary text-white"
                                 onClick={() => {
                                     if (currentPage !== Math.ceil(totalCount / limit)) {
                                         setStart(start + limit);

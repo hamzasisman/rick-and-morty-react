@@ -19,10 +19,10 @@ export const EpisodeTable = (data) => {
               </thead>
               <tbody>
                 {data ?
-                  data.map((discount, index) => (
+                  data.map((episode, index) => (
                     <EpisodesTableRow
                       key={index}
-                      discount={discount} />
+                      episode={episode} />
                   ))
                   :
                   (

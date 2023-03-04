@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { GetEpisodes } from '../../services/EpisodeServices';
 import { EpisodeTable } from './EpisodeTable';
+import { Pagination } from '../../components';
 
 export const Episodes = () => {
 
     const [data, setData] = useState(null)
+    const limit = parseInt(process.env.REACT_APP_TABLE_ROW_LIMIT);
+    const [loading, setLoading] = useState(true);
+    const [start, setStart] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalRecord, setTotalRecord] = useState(0);
 
     const getEpisodes = async () => {
 
@@ -12,6 +18,8 @@ export const Episodes = () => {
 
         if (result) {
             setData(result)
+            setTotalRecord(totalRecord => result && result.length);
+            setLoading(loading => false);
         } else {
             console.log("Bölümler yüklenemedi!");
         }
@@ -21,9 +29,34 @@ export const Episodes = () => {
         getEpisodes()
     }, [])
 
+    //sayfa değiştikçe bilgileri yeniden çağırıyoruz
+    useEffect(() => {
+        if (totalRecord !== 0) {
+            getEpisodes();
+        }
+    }, [start])
+
+    //Arama verileri değiştiğinde değerleri sıfırlıyoruz
+    const resetValue = () => {
+        setStart(start => 0);
+        setCurrentPage(currentPage => 1);
+    }
+
     return (
         <div className='mb-7'>
             <EpisodeTable data={data} />
+            {data &&
+                <Pagination
+                    totalCount={totalRecord}
+                    limit={limit}
+                    start={start}
+                    setStart={setStart}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    setLoading={setLoading}
+                    loadScreen={true}
+                />
+            }
         </div>
     )
 }

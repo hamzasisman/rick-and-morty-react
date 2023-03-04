@@ -1,24 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+    <>
+      <section className="bg-[#202329] min-h-full text-white relative p-5">
+        <h1 className="font-bold text-center text-secondary uppercase text-lg">Compare Rick And Morty Characters</h1>
+        {/* <SelectForCompare /> */}
+        <p className="text-[10px] absolute bottom-3 left-0 right-0 text-center mb-5">© Hamza Şişman | Rick And Morty Project
+          with using <b>Tailwind CSS</b> and <b>React</b>
+
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        {/* <CardsSection /> */}
+      </section>
+    </>
   );
 }
 

@@ -26,4 +26,12 @@
     .td {
         @apply px-5 py-2 border-b border-[#ebedf2] bg-transparent align-top
     }
+    
+    .button {
+        @apply bg-white border border-[#ebedf2] px-4 focus:border-primary outline-none rounded-full h-[45px] flex items-center justify-center
+    }
+
+    .hover-effect {
+        @apply hover:opacity-90
+    }
 }

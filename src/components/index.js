@@ -1,5 +1,5 @@
-import NoRecordsFound from "./NoRecordsFound";
+import Loading from "./Loading";
 
 export {
-    NoRecordsFound
+    Loading
 }

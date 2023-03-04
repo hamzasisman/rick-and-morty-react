@@ -1,10 +1,11 @@
 import React from 'react'
-import { NoRecordsFound } from '../../components'
+import { Loading } from '../../components'
 import { EpisodesTableRow } from './EpisodesTableRow';
 
 export const EpisodeTable = (data) => {
 
-  data = data.data?.results;
+  data = data?.data;
+
   return (
     <>
       <div className="mx-auto px-4 my-4">
@@ -27,7 +28,7 @@ export const EpisodeTable = (data) => {
                   (
                     <tr className="bg-white hover:bg-[#f0f0f0]">
                       <td colSpan="5">
-                        <NoRecordsFound />
+                        <Loading />
                       </td>
                     </tr>
                   )

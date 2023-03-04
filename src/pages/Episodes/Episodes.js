@@ -4,7 +4,7 @@ import { EpisodeTable } from './EpisodeTable';
 
 export const Episodes = () => {
 
-    const [data, setData] = useState([])
+    const [data, setData] = useState(null)
 
     const getEpisodes = async () => {
 
@@ -12,7 +12,6 @@ export const Episodes = () => {
 
         if (result) {
             setData(result)
-            console.log(data);
         } else {
             console.log("Bölümler yüklenemedi!");
         }

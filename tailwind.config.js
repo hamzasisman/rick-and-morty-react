@@ -12,6 +12,7 @@ module.exports = {
         'primary': '#55AFF7',
         'secondary': '#f16c00',
         'base-text': '#333333',
+        'card': '#f7f7f7',
       },
       keyframes: {
         fadeIn: {

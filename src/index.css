@@ -3,7 +3,27 @@
 @tailwind utilities;
 
 @layer components {
+    html {
+        @apply h-full scroll-smooth
+    }
+  
     body {
-        @apply h-full font-quicksand
+        @apply h-full font-quicksand text-base-text bg-white text-[14px]
+    }
+    
+    table {
+        @apply w-full
+    }
+  
+    .th {
+        @apply align-middle py-3 border-b-2 border-[#dee2e6] text-left h-[60px] px-5
+    }
+  
+    .th > * {
+        @apply min-w-max
+    }
+  
+    .td {
+        @apply px-5 py-2 border-b border-[#ebedf2] bg-transparent align-top
     }
 }

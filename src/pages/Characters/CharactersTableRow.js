@@ -2,8 +2,6 @@ import React from 'react'
 
 export const CharactersTableRow = ({ character, setCharacterArray, setModal, setModalContent }) => {
 
-
-
   return (
     <>
       <tr className="bg-white hover:bg-[#f0f0f0]">

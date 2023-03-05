@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { CharactersTableRow } from './CharactersTableRow'
 import { Loading, Modal, Card } from '../../components'
 
@@ -9,6 +9,7 @@ export const CharactersTable = (data) => {
     const [modalContent, setModalContent] = useState({});
 
     data = data?.data;
+
     return (
         <>
             <div className="mx-auto px-4 my-4">

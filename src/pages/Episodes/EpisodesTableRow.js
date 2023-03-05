@@ -18,6 +18,7 @@ export const EpisodesTableRow = ({ episode }) => {
                         {episode.episode}
                     </button>
                 </td>
+                <td className="td align-middle"><p>{episode.url}</p></td>
             </tr>
         </>
     );

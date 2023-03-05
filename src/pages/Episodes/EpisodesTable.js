@@ -15,6 +15,7 @@ export const EpisodesTable = (data) => {
               <thead>
                 <tr>
                   <th className="th"><p>Bölümler</p></th>
+                  <th className="th"><p>API Linki</p></th>
                 </tr>
               </thead>
               <tbody>
@@ -28,7 +29,7 @@ export const EpisodesTable = (data) => {
                   :
                   (
                     <tr className="bg-white hover:bg-[#f0f0f0]">
-                      <td colSpan="1">
+                      <td colSpan="2">
                         <Loading />
                       </td>
                     </tr>

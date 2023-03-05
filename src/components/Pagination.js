@@ -5,12 +5,6 @@ const Pagination = ({ totalCount, limit, start, setStart, currentPage, setCurren
     for (let i = 1; i <= Math.ceil(totalCount / limit); i++) {
         pageNumbers.push(i);
     }
-    // console.log("totalCount: " + totalCount);
-    // console.log("limit: " + limit);
-    // console.log("start: " + start);
-    // console.log("currentPage: " + currentPage);
-    // console.log("loadScreen: " + loadScreen);
-    // console.log("pageNumbers: " + pageNumbers);
 
     return (
         <>

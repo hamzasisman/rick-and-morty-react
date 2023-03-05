@@ -6,6 +6,9 @@ import { Pagination, Search } from '../../components';
 
 export const Characters = () => {
 
+    let favorites = []
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+
     const location = useLocation();
     const characterArray = location.state.characters || false;
     const [characters, setCharacters] = useState([]);

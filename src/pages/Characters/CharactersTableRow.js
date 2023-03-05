@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { add, del } from "../../stores/store";
 import { HeartButton } from '../../components';
@@ -6,7 +6,19 @@ import { HeartButton } from '../../components';
 export const CharactersTableRow = ({ character, setCharacterArray, setModal, setModalContent }) => {
 
   const dispatch = useDispatch()
-  const [favorite, setFavorite] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const favorites = JSON.parse(localStorage.getItem('favorites'));
+
+  useEffect(() => {
+    if (isFavorite) {
+      favorites.push(character)
+    }
+    else {
+      console.log("Favorilerden Kaldırıldı")
+    }
+
+  }, [isFavorite])
 
   return (
     <>
@@ -22,7 +34,10 @@ export const CharactersTableRow = ({ character, setCharacterArray, setModal, set
           </button>
         </td>
         <td className="td align-middle">
-          <HeartButton />
+          <HeartButton
+            isFavorite={isFavorite}
+            setIsFavorite={setIsFavorite}
+          />
         </td>
       </tr>
     </>

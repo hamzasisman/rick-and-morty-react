@@ -43,7 +43,7 @@ export const Episodes = () => {
         setCurrentPage(currentPage => 1);
     }
 
-
+    //Input'a girilen değere göre filtreleme yaparak arama yapıyoruz
     let searchedData = []
     if (data) {
         searchedData = data.filter(
@@ -66,7 +66,7 @@ export const Episodes = () => {
     return (
         <div className='mb-7'>
             <Search
-                placeholder="Aramak için veri giriniz"
+                placeholder="Aramak için bölüm ya da url giriniz"
                 classname="mt-5"
                 onChange={(e) => {
                     setSearchInput(e.target.value)

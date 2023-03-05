@@ -15,7 +15,7 @@ export const EpisodesTable = (data) => {
               <thead>
                 <tr>
                   <th className="th"><p>Bölümler</p></th>
-                  <th className="th"><p>API Linki</p></th>
+                  <th className="th"><p>Url</p></th>
                 </tr>
               </thead>
               <tbody>

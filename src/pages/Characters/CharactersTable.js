@@ -13,6 +13,7 @@ export const CharactersTable = (data) => {
                         <table className="min-w-full leading-normal text-header">
                             <thead>
                                 <tr>
+                                    <th className="th"><p>Fotoğraf</p></th>
                                     <th className="th"><p>İsim</p></th>
                                 </tr>
                             </thead>

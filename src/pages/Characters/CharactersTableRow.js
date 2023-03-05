@@ -12,7 +12,7 @@ export const CharactersTableRow = ({ character, setCharacterArray, setModal, set
 
   useEffect(() => {
     if (isFavorite) {
-      favorites.push(character)
+      console.log("Favorilere Eklendi")
     }
     else {
       console.log("Favorilerden Kaldırıldı")

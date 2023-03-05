@@ -48,7 +48,7 @@ export const Characters = () => {
 
     let filteredCharacters;
     if (characters.length === characterArray.length) {
-        //Pagination için 
+        //Pagination için ilgili sayfada görünecek veriyi set ediyoruz
         filteredCharacters = characters.slice(start, start+limit)
     }
 

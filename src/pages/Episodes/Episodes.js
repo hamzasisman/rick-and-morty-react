@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { GetEpisodes } from '../../services/Services';
 import { EpisodesTable } from './EpisodesTable';
-import { Pagination } from '../../components';
+import { Pagination, Search } from '../../components';
 
 export const Episodes = () => {
 
@@ -11,8 +11,11 @@ export const Episodes = () => {
     const [start, setStart] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalRecord, setTotalRecord] = useState(0);
+    const [searchInput, setSearchInput] = useState("");
 
     const getEpisodes = async () => {
+
+        console.log(totalRecord);
 
         const result = await GetEpisodes();
 
@@ -50,9 +53,25 @@ export const Episodes = () => {
         ))
     }
 
+    const searchedData = filteredData.filter(
+        (item) =>
+            item.episode.toLowerCase().includes(searchInput.toLowerCase()) ||
+            item.url.toLowerCase().includes(searchInput.toLowerCase())
+    );
+
+
+    useEffect(() => {
+        setTotalRecord(searchedData.length)
+    })
+
     return (
         <div className='mb-7'>
-            <EpisodesTable data={filteredData} />
+            <Search
+                placeholder="Aramak için veri giriniz"
+                classname="mt-5"
+                onChange={(e) => setSearchInput(e.target.value)}
+            />
+            <EpisodesTable data={searchedData} />
             {data &&
                 <Pagination
                     totalCount={totalRecord}

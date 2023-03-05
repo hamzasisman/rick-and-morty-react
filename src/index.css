@@ -54,4 +54,8 @@
     body.active-modal {
       @apply !overflow-y-hidden
     }
+    
+    .input {
+        @apply border rounded-full h-[40px] outline-0 focus:border-primary py-3 px-3
+    }
 }

@@ -28,7 +28,7 @@ export const EpisodesTable = (data) => {
                   :
                   (
                     <tr className="bg-white hover:bg-[#f0f0f0]">
-                      <td colSpan="5">
+                      <td colSpan="1">
                         <Loading />
                       </td>
                     </tr>

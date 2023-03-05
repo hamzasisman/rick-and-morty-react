@@ -8,7 +8,7 @@ export const EpisodeTableRow = (data) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/episode', { state: { id: data.id } });
+    navigate('/characters', { state: { characters: data.characters } });
   };
 
   return (

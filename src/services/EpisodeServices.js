@@ -1,12 +1,5 @@
 import { fetchApi } from "./FetchApi";
 
-// export const GetEpisodes = async () => {
-
-//     const url = 'https://rickandmortyapi.com/api/episode';
-
-//     return await fetchApi(url);
-// }
-
 export const GetEpisodes = async () => {
 
     const url = 'https://rickandmortyapi.com/api/episode';
@@ -25,5 +18,13 @@ export const GetEpisodes = async () => {
     allEpisodes = allEpisodes.concat(response.results);
 
     return allEpisodes;
+
+}
+
+export const GetEpisode = async (id) => {
+
+    const url = `https://rickandmortyapi.com/api/episode/${id}`;
+
+    return await fetchApi(url);
 
 }

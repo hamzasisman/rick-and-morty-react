@@ -1,12 +1,14 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
-export const EpisodesTableRow = (props) => {
+export const EpisodesTableRow = ({ episode }) => {
 
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate('/characters');
+
+        console.log(episode.id);
+        navigate('/episode', { state: { id: episode.id } });
     };
     return (
         <>
@@ -15,7 +17,7 @@ export const EpisodesTableRow = (props) => {
                     <button
                         className='text-primary hover:font-bold hover:underline focus:font-bold focus:underline'
                         onClick={handleClick}>
-                        {props.episode.episode}
+                        {episode.episode}
                     </button>
                 </td>
             </tr>

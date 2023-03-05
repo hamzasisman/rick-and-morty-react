@@ -22,7 +22,8 @@ export const EpisodeTable = (data) => {
                   data.map((episode, index) => (
                     <EpisodesTableRow
                       key={index}
-                      episode={episode} />
+                      episode={episode}
+                    />
                   ))
                   :
                   (

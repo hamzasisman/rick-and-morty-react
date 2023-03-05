@@ -1,5 +1,5 @@
 import { Episodes } from "./pages/Episodes";
-import { Characters } from "./pages/Characters";
+import { Episode } from "./pages/Episode";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Episodes />} />
-            <Route path="/characters" element={<Characters />} />
+            <Route path="/episode" element={<Episode />} />
           </Routes>
         </BrowserRouter>
 

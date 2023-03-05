@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { GetEpisodes } from '../../services/EpisodeServices';
-import { EpisodeTable } from './EpisodeTable';
+import { EpisodesTable } from './EpisodesTable';
 import { Pagination } from '../../components';
 
 export const Episodes = () => {
@@ -52,7 +52,7 @@ export const Episodes = () => {
 
     return (
         <div className='mb-7'>
-            <EpisodeTable data={filteredData} />
+            <EpisodesTable data={filteredData} />
             {data &&
                 <Pagination
                     totalCount={totalRecord}

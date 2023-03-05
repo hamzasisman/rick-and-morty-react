@@ -1,7 +1,7 @@
 import { Episodes } from "./Episodes";
-import { EpisodeTable } from "./EpisodeTable";
+import { EpisodesTable } from "./EpisodesTable";
 import { EpisodesTableRow } from "./EpisodesTableRow";
 
 export {
-    Episodes, EpisodeTable, EpisodesTableRow
+    Episodes, EpisodesTable, EpisodesTableRow
 }

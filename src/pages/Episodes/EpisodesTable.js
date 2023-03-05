@@ -2,7 +2,7 @@ import React from 'react'
 import { Loading } from '../../components'
 import { EpisodesTableRow } from './EpisodesTableRow';
 
-export const EpisodeTable = (data) => {
+export const EpisodesTable = (data) => {
 
   data = data?.data;
 

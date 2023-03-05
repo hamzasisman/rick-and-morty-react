@@ -7,7 +7,6 @@ export const EpisodesTableRow = ({ episode }) => {
 
     const handleClick = () => {
 
-        console.log(episode.id);
         navigate('/episode', { state: { id: episode.id } });
     };
     return (

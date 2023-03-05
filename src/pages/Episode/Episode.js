@@ -7,7 +7,6 @@ export const Episode = () => {
 
   const location = useLocation();
   const episode = location.state || false;
-  console.log(episode.id);
 
   const [data, setData] = useState(null)
   const limit = parseInt(process.env.REACT_APP_TABLE_ROW_LIMIT);
@@ -21,7 +20,7 @@ export const Episode = () => {
       // setTotalRecord(totalRecord => result && result.length);
       // setLoading(loading => false);
     } else {
-      console.log("Bölümler yüklenemedi!");
+      console.log("Bölüm detayları yüklenemedi!");
     }
   }
 
@@ -29,12 +28,11 @@ export const Episode = () => {
     getEpisode(episode.id)
   }, [])
 
-  console.log(data);
 
   return (
     <div className='mb-7'>
 
-      <EpisodeTable id={episode.id} data={data} />
+      <EpisodeTable data={data} />
       
     </div>
   )

@@ -15,8 +15,6 @@ export const Episodes = () => {
 
     const getEpisodes = async () => {
 
-        console.log(totalRecord);
-
         const result = await GetEpisodes();
 
         if (result) {
@@ -45,33 +43,37 @@ export const Episodes = () => {
         setCurrentPage(currentPage => 1);
     }
 
-    // Data'dan pagination'a göre listelenecek aralığı filtreliyoruz
-    let filteredData = [];
+
+    let searchedData = []
     if (data) {
-        filteredData = data.filter((data) => (
-            data.id > start && data.id <= start + limit
-        ))
+        searchedData = data.filter(
+            (item) =>
+                item.episode.toLowerCase().includes(searchInput.toLowerCase()) ||
+                item.url.toLowerCase().includes(searchInput.toLowerCase())
+        );
     }
-
-    const searchedData = filteredData.filter(
-        (item) =>
-            item.episode.toLowerCase().includes(searchInput.toLowerCase()) ||
-            item.url.toLowerCase().includes(searchInput.toLowerCase())
-    );
-
 
     useEffect(() => {
         setTotalRecord(searchedData.length)
     })
+
+    // Data'dan pagination'a göre listelenecek aralığı filtreliyoruz
+    let filteredData = [];
+    if (searchedData.length > 0) {
+        filteredData = searchedData.slice(start, start + limit);
+    }
 
     return (
         <div className='mb-7'>
             <Search
                 placeholder="Aramak için veri giriniz"
                 classname="mt-5"
-                onChange={(e) => setSearchInput(e.target.value)}
+                onChange={(e) => {
+                    setSearchInput(e.target.value)
+                    resetValue()
+                }}
             />
-            <EpisodesTable data={searchedData} />
+            <EpisodesTable data={filteredData} />
             {data &&
                 <Pagination
                     totalCount={totalRecord}

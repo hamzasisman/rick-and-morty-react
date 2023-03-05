@@ -42,8 +42,8 @@ export const Episodes = () => {
         setCurrentPage(currentPage => 1);
     }
 
+    // Data'dan pagination'a göre listelenecek aralığı filtreliyoruz
     let filteredData = [];
-
     if (data) {
         filteredData = data.filter((data) => (
             data.id > start && data.id <= start + limit

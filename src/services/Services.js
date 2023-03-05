@@ -28,3 +28,11 @@ export const GetEpisode = async (id) => {
     return await fetchApi(url);
 
 }
+
+export const GetCharacter = async (id) => {
+
+    const url = `https://rickandmortyapi.com/api/character/${id}`;
+
+    return await fetchApi(url);
+
+}

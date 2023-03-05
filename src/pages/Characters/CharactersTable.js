@@ -3,6 +3,8 @@ import { CharactersTableRow } from './CharactersTableRow'
 import { Loading } from '../../components'
 
 export const CharactersTable = (data) => {
+
+    data = data?.data;
     return (
         <>
             <div className="mx-auto px-4 my-4">
@@ -11,15 +13,15 @@ export const CharactersTable = (data) => {
                         <table className="min-w-full leading-normal text-header">
                             <thead>
                                 <tr>
-                                    <th className="th"><p>Bölümler</p></th>
+                                    <th className="th"><p>İsim</p></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {data ?
-                                    data.map((episode, index) => (
+                                    data.map((character, index) => (
                                         <CharactersTableRow
                                             key={index}
-                                            episode={episode}
+                                            character={character}
                                         />
                                     ))
                                     :

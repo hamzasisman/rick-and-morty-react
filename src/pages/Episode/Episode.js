@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
-import { GetEpisode } from '../../services/EpisodeServices';
+import { GetEpisode } from '../../services/Services';
 import { EpisodeTable } from './EpisodeTable';
 
 export const Episode = () => {

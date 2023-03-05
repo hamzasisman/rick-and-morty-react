@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { GetEpisodes } from '../../services/EpisodeServices';
+import { GetEpisodes } from '../../services/Services';
 import { EpisodesTable } from './EpisodesTable';
 import { Pagination } from '../../components';
 

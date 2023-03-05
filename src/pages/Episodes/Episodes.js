@@ -42,9 +42,17 @@ export const Episodes = () => {
         setCurrentPage(currentPage => 1);
     }
 
+    let filteredData = [];
+
+    if (data) {
+        filteredData = data.filter((data) => (
+            data.id > start && data.id <= start + limit
+        ))
+    }
+
     return (
         <div className='mb-7'>
-            <EpisodeTable data={data} />
+            <EpisodeTable data={filteredData} />
             {data &&
                 <Pagination
                     totalCount={totalRecord}
@@ -54,7 +62,6 @@ export const Episodes = () => {
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}
                     setLoading={setLoading}
-                    loadScreen={true}
                 />
             }
         </div>

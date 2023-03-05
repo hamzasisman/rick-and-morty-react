@@ -1,11 +1,11 @@
 
 const Pagination = ({ totalCount, limit, start, setStart, currentPage, setCurrentPage, setLoading, loadScreen = false }) => {
 
-    console.log("totalCount: " + totalCount);
-    console.log("limit: " + limit);
-    console.log("start: " + start);
-    console.log("currentPage: " + currentPage);
-    console.log("loadScreen: " + loadScreen);
+    // console.log("totalCount: " + totalCount);
+    // console.log("limit: " + limit);
+    // console.log("start: " + start);
+    // console.log("currentPage: " + currentPage);
+    // console.log("loadScreen: " + loadScreen);
 
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(totalCount / limit); i++) {

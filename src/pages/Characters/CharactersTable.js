@@ -20,6 +20,7 @@ export const CharactersTable = (data) => {
                                 <tr>
                                     <th className="th"><p>Fotoğraf</p></th>
                                     <th className="th"><p>İsim</p></th>
+                                    <th className="th"></th>
                                 </tr>
                             </thead>
                             <tbody>

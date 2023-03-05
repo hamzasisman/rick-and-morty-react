@@ -58,4 +58,8 @@
     .input {
         @apply border rounded-full h-[40px] outline-0 focus:border-primary py-3 px-3
     }
+
+    .tooltip {
+        @apply hidden group-hover:block absolute animate-fadeIn duration-300 text-center bg-[#222222] text-white text-sm px-2 py-1 rounded z-20 max-w-max right-[-100px] left-[-100px] mx-auto -top-[38px] after:absolute after:-bottom-1 after:right-0 after:left-0 after:mx-auto after:w-[10px] after:h-[10px] after:bg-[#222222] after:rotate-45
+    }
 }

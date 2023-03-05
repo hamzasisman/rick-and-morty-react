@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from "react-redux";
+import { add, del } from "../../stores/store";
+import { HeartButton } from '../../components';
 
 export const CharactersTableRow = ({ character, setCharacterArray, setModal, setModalContent }) => {
+
+  const dispatch = useDispatch()
+  const [favorite, setFavorite] = useState(false);
 
   return (
     <>
@@ -14,6 +20,9 @@ export const CharactersTableRow = ({ character, setCharacterArray, setModal, set
             onClick={() => { setModal(true); setCharacterArray(character); setModalContent({ element: "card" }) }}>
             {character.name}
           </button>
+        </td>
+        <td className="td align-middle">
+          <HeartButton />
         </td>
       </tr>
     </>

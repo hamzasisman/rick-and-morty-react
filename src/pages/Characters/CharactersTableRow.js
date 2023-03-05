@@ -1,10 +1,8 @@
-import React, { useRef } from 'react'
-import { Modal, ModalOverlay, OpenModal } from '../../components';
+import React from 'react'
 
-export const CharactersTableRow = ({ character }) => {
+export const CharactersTableRow = ({ character, setCharacterArray, setModal, setModalContent }) => {
 
-  const modalRef = useRef();
-  const modalOverlayRef = useRef();
+
 
   return (
     <>
@@ -15,19 +13,11 @@ export const CharactersTableRow = ({ character }) => {
         <td className="td align-middle">
           <button
             className='text-primary hover:font-bold hover:underline focus:font-bold focus:underline'
-            onClick={() => {OpenModal(modalOverlayRef, modalRef)}}>
+            onClick={() => { setModal(true); setCharacterArray(character); setModalContent({ element: "card" }) }}>
             {character.name}
           </button>
         </td>
       </tr>
-
-      {/* --- Modal --- */}
-      <ModalOverlay ref={modalOverlayRef} />
-      <Modal
-        ref={modalRef}
-        character = {character}
-        overlayRef={modalOverlayRef}
-      />
     </>
   )
 }

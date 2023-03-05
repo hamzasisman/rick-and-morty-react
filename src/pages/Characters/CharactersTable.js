@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { CharactersTableRow } from './CharactersTableRow'
-import { Loading } from '../../components'
+import { Loading, Modal, Card } from '../../components'
 
 export const CharactersTable = (data) => {
+
+    const [characterArray, setCharacterArray] = useState({})
+    const [modal, setModal] = useState(false);
+    const [modalContent, setModalContent] = useState({});
 
     data = data?.data;
     return (
@@ -23,6 +27,9 @@ export const CharactersTable = (data) => {
                                         <CharactersTableRow
                                             key={index}
                                             character={character}
+                                            setCharacterArray = {setCharacterArray}
+                                            setModal={setModal}
+                                            setModalContent={setModalContent}
                                         />
                                     ))
                                     :
@@ -36,6 +43,15 @@ export const CharactersTable = (data) => {
                                 }
                             </tbody>
                         </table>
+                        {(Object.keys(modalContent).length !== 0) && (
+                            <Modal modal={modal} setModal={setModal} classes={
+                                {
+                                    modal: "max-h-max max-w-max",
+                                }}>
+                                {modalContent.element === "card" && <Card character={characterArray} />}
+
+                            </Modal>
+                        )}
                     </div>
                 </div>
             </div>

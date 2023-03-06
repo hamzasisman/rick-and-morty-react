@@ -3,7 +3,63 @@
 @tailwind utilities;
 
 @layer components {
+    html {
+        @apply h-full scroll-smooth
+    }
+  
     body {
-        @apply h-full font-quicksand
+        @apply h-full font-quicksand text-base-text bg-white text-[14px]
+    }
+    
+    table {
+        @apply w-full
+    }
+  
+    .th {
+        @apply align-middle py-3 border-b-2 border-[#dee2e6] text-left h-[60px] px-5
+    }
+  
+    .th > * {
+        @apply min-w-max
+    }
+  
+    .td {
+        @apply px-5 py-2 border-b border-[#ebedf2] bg-transparent align-top
+    }
+    
+    .button {
+        @apply bg-white border border-[#ebedf2] px-4 focus:border-primary outline-none rounded-full h-[45px] flex items-center justify-center
+    }
+
+    .hover-effect {
+        @apply hover:opacity-90
+    }
+
+    .modal-overlay {
+        @apply fixed z-40 w-screen h-screen inset-0 bg-[#333333] bg-opacity-70
+    }
+  
+    .modal {
+      @apply transition-transform duration-300 fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] px-2 bg-transparent rounded-[10px] space-y-5 drop-shadow-lg
+    }
+  
+    .modal-content {
+      @apply !mb-6
+    }
+  
+    .modal-close-button {
+      @apply flex justify-center items-center fixed -right-1 -top-1 text-[16px] text-[#111111] font-bold bg-white rounded-full w-8 h-8 border border-primary shadow-md
+    }
+
+    body.active-modal {
+      @apply !overflow-y-hidden
+    }
+    
+    .input {
+        @apply border rounded-full h-[40px] outline-0 focus:border-primary py-3 px-3
+    }
+
+    .tooltip {
+        @apply hidden group-hover:block absolute animate-fadeIn duration-300 text-center bg-[#222222] text-white text-sm px-2 py-1 rounded z-20 max-w-max right-[-100px] left-[-100px] mx-auto -top-[38px] after:absolute after:-bottom-1 after:right-0 after:left-0 after:mx-auto after:w-[10px] after:h-[10px] after:bg-[#222222] after:rotate-45
     }
 }

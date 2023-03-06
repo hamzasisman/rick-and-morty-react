@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { add, del } from "../../stores/store";
+import { add, del  } from '../../stores/Favorites';
 import { HeartButton } from '../../components';
 
 export const CharactersTableRow = ({ character, setCharacterArray, setModal, setModalContent }) => {
@@ -12,6 +12,7 @@ export const CharactersTableRow = ({ character, setCharacterArray, setModal, set
 
   useEffect(() => {
     if (isFavorite) {
+      dispatch(add({character}))
       console.log("Favorilere Eklendi")
     }
     else {

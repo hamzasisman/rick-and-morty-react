@@ -1,14 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const items = localStorage.getItem('favorites') !== null ? JSON.parse
+    (localStorage.getItem('favorites')) : []
+
 const favoritesSlice = createSlice({
     name: 'favorites',
-    initialState: [],
+    initialState: items,
     reducers: {
-        add(state, {payload}){
+        add(state, { payload }) {
             state.push(payload)
+            // localStorage.setItem('favorites', JSON.stringify(state.favorites.map(item => item)))
         },
-        del(state, { payload }){
+        del(state, { payload }) {
             state.splice(state.indexOf(payload), 1);
+            // localStorage.setItem('favorites', JSON.stringify(state.favorites.map(item => item)))
         }
     }
 })

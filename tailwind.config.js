@@ -9,10 +9,13 @@ module.exports = {
         'quicksand': ['Quicksand']
       },
       colors: {
-        'primary': '#55AFF7',
+        'primary': '#1269db',
         'secondary': '#f16c00',
         'base-text': '#333333',
-        'card': '#f7f7f7',
+        'card': '#f5f5f5',
+      },
+      boxShadow: {
+        button: '4px 4px 10px 0 rgb(0 0 0 / 10%), 4px 4px 15px -5px rgb(21 114 232 / 40%)',
       },
       keyframes: {
         fadeIn: {

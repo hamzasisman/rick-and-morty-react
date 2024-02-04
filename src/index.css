@@ -38,6 +38,10 @@
     .modal-overlay {
         @apply fixed z-40 w-screen h-screen inset-0 bg-[#333333] bg-opacity-70
     }
+
+    .active-button {
+        @apply font-bold bg-primary text-white shadow-button hover:!bg-primary hover:!text-white focus:bg-primary focus:text-white
+    }
   
     .modal {
       @apply transition-transform duration-300 fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] px-2 bg-transparent rounded-[10px] space-y-5 drop-shadow-lg

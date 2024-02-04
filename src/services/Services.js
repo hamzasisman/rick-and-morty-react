@@ -36,3 +36,10 @@ export const GetCharacter = async (id) => {
     return await fetchApi(url);
 
 }
+
+export const GetProducts = async () => {
+    
+    const url = 'https://5fc9346b2af77700165ae514.mockapi.io/products';
+
+    return await fetchApi(url);
+}

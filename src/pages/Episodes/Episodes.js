@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { GetEpisodes } from '../../services/Services';
+import { GetEpisodes, GetProducts } from '../../services/Services';
 import { EpisodesTable } from './EpisodesTable';
 import { Pagination, Search } from '../../components';
 
 export const Episodes = () => {
 
     const [data, setData] = useState(null)
-    const limit = parseInt(process.env.REACT_APP_TABLE_ROW_LIMIT);
+    const limit = parseInt(process.env.REACT_APP_TABLE_LIMIT);
     const [loading, setLoading] = useState(true);
     const [start, setStart] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
@@ -26,6 +26,20 @@ export const Episodes = () => {
         }
     }
 
+    const getProducts = async () => {
+
+        const result = await GetProducts();
+
+        if (result) {
+            // setData(result)
+            // setTotalRecord(totalRecord => result && result.length);
+            // setLoading(loading => false);
+            console.log(result)
+        } else {
+            console.log("Bölümler yüklenemedi!");
+        }
+    }
+
     useEffect(() => {
         getEpisodes()
     }, [])
@@ -36,6 +50,10 @@ export const Episodes = () => {
             getEpisodes();
         }
     }, [start])
+
+    useEffect(() => {
+        getProducts();
+    }, [])
 
     //Arama verileri değiştiğinde değerleri sıfırlıyoruz
     const resetValue = () => {
@@ -64,15 +82,7 @@ export const Episodes = () => {
     }
 
     return (
-        <div className='mb-7'>
-            <Search
-                placeholder="Aramak için bölüm ya da url giriniz"
-                classname="mt-5"
-                onChange={(e) => {
-                    setSearchInput(e.target.value)
-                    resetValue()
-                }}
-            />
+        <div className='w-full'>
             <EpisodesTable data={filteredData} />
             {data &&
                 <Pagination

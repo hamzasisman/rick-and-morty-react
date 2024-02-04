@@ -12,7 +12,7 @@ export const Characters = () => {
     const location = useLocation();
     const characterArray = location.state.characters || false;
     const [characters, setCharacters] = useState([]);
-    const limit = parseInt(process.env.REACT_APP_TABLE_ROW_LIMIT);
+    const limit = parseInt(process.env.REACT_APP_TABLE_LIMIT);
     const [loading, setLoading] = useState(true);
     const [start, setStart] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);

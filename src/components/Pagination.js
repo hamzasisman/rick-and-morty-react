@@ -11,8 +11,6 @@ const Pagination = (props) => {
         loadScreen = false,
     } = props
 
-    console.log(props)
-
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(totalCount / limit); i++) {
         pageNumbers.push(i);

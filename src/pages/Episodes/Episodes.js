@@ -34,7 +34,6 @@ export const Episodes = () => {
             // setData(result)
             // setTotalRecord(totalRecord => result && result.length);
             // setLoading(loading => false);
-            console.log(result)
         } else {
             console.log("Bölümler yüklenemedi!");
         }

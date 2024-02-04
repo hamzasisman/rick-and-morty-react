@@ -6,8 +6,9 @@ import Search from "./Search";
 import Navbar from "./Navbar";
 import HeartButton from "./HeartButton";
 import { OpenModal, CloseModal, ModalOverlay } from "./utility";
+import NoRecordsFound from "./NoRecordsFound";
 
 export {
     Loading, Pagination, Modal, Card, Search, HeartButton,
-    OpenModal, CloseModal, ModalOverlay, Navbar
+    OpenModal, CloseModal, ModalOverlay, Navbar, NoRecordsFound
 }

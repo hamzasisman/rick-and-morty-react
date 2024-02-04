@@ -1,20 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { LogoYatay } from '../assets/img'
 import Search from './Search'
 
-const Navbar = () => {
+const Navbar = (props) => {
+
+    const {setSearchInput} = props
 
     const navigate = useNavigate();
 
-    const [searchInput, setSearchInput] = useState("");
-
-    useEffect(() => {
-        if (searchInput !== "") {
-            localStorage.setItem('searchInput', JSON.stringify(searchInput));
-            window.location.reload();
-        }
-    }, [searchInput])
 
     const handleClick = () => {
         navigate('/');

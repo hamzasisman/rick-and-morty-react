@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { Loading, Pagination } from '../../components';
+import { Loading, NoRecordsFound, Pagination } from '../../components';
 import { GetProducts } from '../../services/Services';
 import ProductCards from './ProductCards';
 
-export const Products = () => {
+export const Products = (props) => {
+
+    const { searchInput } = props
 
     const [data, setData] = useState(null)
-    const [productData, setProductData] = useState(null)
     const limit = parseInt(process.env.REACT_APP_TABLE_LIMIT);
     const [loading, setLoading] = useState(true);
     const [start, setStart] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
+    //Toplam verinin uzunluğu
     const [totalRecord, setTotalRecord] = useState(0);
-    const [searchInput, setSearchInput] = useState("");
     const [searchedData, setSearchedData] = useState([])
+    //Sayfa başına gösterilecek veri
     const [filteredData, setFilteredData] = useState([])
 
     const getProducts = async () => {
@@ -23,12 +25,12 @@ export const Products = () => {
         const result = await GetProducts();
 
         if (result) {
-            setProductData(result)
+            setData(result)
             setTotalRecord(totalRecord => result && result.length);
-            setLoading(loading => false);
         } else {
             console.log("Ürünler yüklenemedi!");
         }
+        setLoading(loading => false);
     }
 
     //Arama verileri değiştiğinde değerleri sıfırlıyoruz
@@ -38,54 +40,36 @@ export const Products = () => {
     }
 
     useEffect(() => {
-        // Data'dan pagination'a göre listelenecek aralığı filtreliyoruz
-        if (searchedData?.length > 0) {
-            setFilteredData(searchedData.slice(start, start + limit));
-        }
-    }, [searchedData, start, limit]);
-
-
-    useEffect(() => {
 
         //Input'a girilen değere göre filtreleme yaparak arama yapıyoruz
-        if (productData) {
+        if (data) {
             let tmpSearchedData = []
 
-            if (searchInput.length > 0) {
-                tmpSearchedData = productData.filter(
-                    (item) =>
-                        item.name.toLowerCase().includes(searchInput.toLowerCase()) ||
-                        item.model.toLowerCase().includes(searchInput.toLowerCase())
-                );
-            } else {
-                tmpSearchedData = productData;
-            }
+            tmpSearchedData = data.filter(
+                (item) =>
+                    item.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+                    item.model.toLowerCase().includes(searchInput.toLowerCase())
+            );
 
             setSearchedData(searchedData => tmpSearchedData);
+            setTotalRecord(totalRecord => tmpSearchedData.length)
         }
-    }, [searchInput]);
+    }, [data, searchInput]);
 
     useEffect(() => {
-        if (searchedData?.length > 0) {
-            setTotalRecord(searchedData.length)
-        }
-    }, [searchedData])
+        // Data'dan pagination'a göre listelenecek aralığı filtreliyoruz
+        setFilteredData(searchedData.slice(start, start + limit));
+    }, [start, searchedData, limit]);
 
-    //sayfa değiştikçe bilgileri yeniden çağırıyoruz
-    useEffect(() => {
-        if (totalRecord !== 0) {
-            getProducts();
-        }
-        setFilteredData(filteredData => searchedData.slice(start, start + limit))
-    }, [start, totalRecord])
+    console.log(searchedData)
+    console.log(filteredData)
 
     useEffect(() => {
         getProducts();
 
-        //Sayfa ilk yüklendiğinde localStorage'deki değişkeni alıp yerine tekrar boş string set ediyoruz
-        setSearchInput(searchInput => JSON.parse(localStorage.getItem('searchInput')) || '')
-        // localStorage.removeItem('searchInput');
-    }, [])
+        window.scrollTo({ top: 0, behavior: "smooth" })
+    }, []);
+
 
     return (
         <div className='w-full'>
@@ -96,11 +80,16 @@ export const Products = () => {
             {
                 !loading && (
                     <>
-                        <p>{searchInput}</p>
-                        <ProductCards data={filteredData.length > 0 ? filteredData : productData} />
-                        {productData &&
+                        {filteredData.length > 0 &&
+                            <ProductCards data={filteredData} />
+                        }
+
+                        {filteredData.length === 0 &&
+                            <NoRecordsFound />
+                        }
+                        {data &&
                             <Pagination
-                                totalCount={filteredData.length || productData}
+                                totalCount={totalRecord}
                                 limit={limit}
                                 start={start}
                                 setStart={setStart}

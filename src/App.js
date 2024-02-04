@@ -1,7 +1,5 @@
-import { Episode } from "./pages/Episode";
-import { Characters } from "./pages/Characters";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Products, ProductsLayout } from "./pages/Products";
+import { ProductsLayout } from "./pages/Products";
 
 function App() {
   return (
@@ -11,8 +9,6 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<ProductsLayout />} />
-            <Route path="/episode" element={<Episode />} />
-            <Route path="/characters" element={<Characters />} />
           </Routes>
         </BrowserRouter>
 

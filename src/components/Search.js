@@ -1,21 +1,8 @@
-import React, { useRef, useState } from 'react'
+import React from 'react';
 
 const Search = (props) => {
 
     const { placeholder, setSearchInput } = props;
-
-    const inputRef = useRef();
-
-    const [value, setValue] = useState("");
-    const [isSearched, setIsSearched] = useState(false);
-
-    const handleClick = () => {
-        setSearchInput(searchInput => value);
-        setIsSearched(isSearched => false);
-
-        //Arama yaptıktan sonra içeriğinin sıfırlanmasını sağlıyoruz
-        inputRef.current.value = '';
-    }
 
     return (
         <>
@@ -45,16 +32,10 @@ const Search = (props) => {
                         </svg>
                     </label>
                     <input
-                        className="block h-full w-full border-transparent bg-[#0F5ABC] focus-within:bg-white transition-colors duration-400 py-2 pl-14 pr-3 text-[#BFBFBF] placeholder-white focus:border-transparent focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm rounded-md"
-                        ref={inputRef}
+                        className="block h-full w-full border-transparent bg-[#0F5ABC] focus-within:bg-white transition-colors duration-400 py-2 pl-14 pr-3 text-white focus:text-base-text placeholder-white focus:border-transparent focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm rounded-md"
                         type="text"
                         placeholder={placeholder}
-                        onChange={e => { setValue(e.target.value); setIsSearched(isSearched => true); }}
-                        onKeyDown={e => {
-                            if (e.keyCode === 13 && isSearched) {
-                                handleClick();
-                            }
-                        }}
+                        onChange={e => { setSearchInput(searchInput => e.target.value);}}
                     />
                 </div>
             </div>

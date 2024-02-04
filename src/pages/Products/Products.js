@@ -59,15 +59,13 @@ export const Products = (props) => {
     useEffect(() => {
         // Data'dan pagination'a göre listelenecek aralığı filtreliyoruz
         setFilteredData(searchedData.slice(start, start + limit));
-    }, [start, searchedData, limit]);
 
-    console.log(searchedData)
-    console.log(filteredData)
+        //inpur'a her veri girdiğimizde yukarı scroll olmasını sağlıyoruz.
+        window.scrollTo({ top: 0, behavior: "smooth" })
+    }, [start, searchedData, limit]);
 
     useEffect(() => {
         getProducts();
-
-        window.scrollTo({ top: 0, behavior: "smooth" })
     }, []);
 
 

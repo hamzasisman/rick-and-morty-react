@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import { formatPrice } from '../../components/utility';
+import { formatDate, formatPrice } from '../../components/utility';
 
 const ProductCard = (props) => {
 
@@ -31,6 +31,7 @@ const ProductCard = (props) => {
                     {product.name}
                 </button>
                 <p className='-mt-1'>{product.model}</p>
+                <p className='-mt-1 text-[12px]'>{formatDate(product.createdAt)}</p>
             </div>
             <button
                 className='group relative bg-primary rounded-[10px] h-[40px] text-white text-center hover:opacity-80 focus:opacity-80'

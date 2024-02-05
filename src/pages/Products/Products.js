@@ -5,7 +5,7 @@ import ProductCards from './ProductCards';
 
 export const Products = (props) => {
 
-    const { searchInput } = props
+    const { searchInput, sortType } = props
 
     const [data, setData] = useState(null)
     const limit = parseInt(process.env.REACT_APP_TABLE_LIMIT);
@@ -40,6 +40,7 @@ export const Products = (props) => {
     }
 
     useEffect(() => {
+        resetValue();
 
         //Input'a girilen değere göre filtreleme yaparak arama yapıyoruz
         if (data) {
@@ -54,7 +55,7 @@ export const Products = (props) => {
             setSearchedData(searchedData => tmpSearchedData);
             setTotalRecord(totalRecord => tmpSearchedData.length)
         }
-    }, [data, searchInput]);
+    }, [data, searchInput, sortType]);
 
     useEffect(() => {
         // Data'dan pagination'a göre listelenecek aralığı filtreliyoruz
@@ -63,6 +64,22 @@ export const Products = (props) => {
         //inpur'a her veri girdiğimizde yukarı scroll olmasını sağlıyoruz.
         window.scrollTo({ top: 0, behavior: "smooth" })
     }, [start, searchedData, limit]);
+
+    useEffect(() => {
+        let sortedData = [];
+        if (data) {
+            if (sortType === 0)
+                sortedData = data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+            else if (sortType === 1)
+                sortedData = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            else if (sortType === 2)
+                sortedData = data.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+            else if (sortType === 3)
+                sortedData = data.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+        }
+
+        setData(data => sortedData)
+    }, [sortType])
 
     useEffect(() => {
         getProducts();

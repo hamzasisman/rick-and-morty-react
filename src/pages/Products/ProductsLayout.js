@@ -4,6 +4,8 @@ import { Products } from './Products';
 
 export const ProductsLayout = () => {
 
+    const [sortType, setSortType] = useState(0)
+
     const [searchInput, setSearchInput] = useState("");
 
     useEffect(() => {
@@ -16,10 +18,13 @@ export const ProductsLayout = () => {
 
             <div className='flex text-base-text justify-between px-5 gap-5 mt-[62px] pt-4 max-w-7xl mx-auto'>
                 <div className='flex flex-col items-end w-[17%] min-w-[200px]'>
-                    <LeftSidebar />
+                    <LeftSidebar
+                        sortType={sortType}
+                        setSortType={setSortType}
+                    />
                 </div>
                 <div className='flex-1'>
-                    <Products searchInput={searchInput} />
+                    <Products searchInput={searchInput} sortType={sortType} />
                 </div>
 
                 <div className='flex flex-col w-[17%] min-w-[200px]'>

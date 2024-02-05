@@ -25,6 +25,15 @@ export const formatPrice = (price) => {
     return formattedOutput.format(price).replace('₺', '') + ' ₺'
 }
 
+
+//Tarihi gg/aa/yyyy ss.dd.ss şeklinde formatlıyoruz
+export const formatDate = (date) => {
+    const options = { day: 'numeric', month: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+    const formattedDate = new Date(date).toLocaleDateString('tr-TR', options);
+  
+    return formattedDate;
+  };
+
 export const ModalOverlay = forwardRef((props, ref) => {
     return (
         <>

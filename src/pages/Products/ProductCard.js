@@ -5,7 +5,14 @@ const ProductCard = (props) => {
 
     const product = props.product;
 
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
+
+    let chart = JSON.parse(localStorage.getItem('chart')) || [];
+
+    const handleClick = () => {
+        chart.push(product)
+        localStorage.setItem('chart', JSON.stringify(chart))
+    };
 
     return (
         <div className='flex flex-col gap-1.5 border border-box p-2 rounded-[10px]'>
@@ -17,9 +24,8 @@ const ProductCard = (props) => {
             <p className='font-bold text-primary text-[18px]'>{product.price} ₺</p>
             <div>
                 <button
-                    type='button'
                     className='underline hover:text-primary focus:text-primary transition-colors duration-300'
-                    onClick={() => navigate("/")}
+                    onClick={() => navigate('/detail', { state: { product: product } })}
                 >
                     {product.name}
                 </button>
@@ -28,7 +34,7 @@ const ProductCard = (props) => {
             <button
                 className='bg-primary rounded-[10px] h-[40px] text-white text-center hover:opacity-80 focus:opacity-80'
                 type='button'
-                onClick={() => console.log(product)}
+                onClick={handleClick}
             >
                 Add to Chart
             </button>

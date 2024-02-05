@@ -35,7 +35,7 @@ const Search = (props) => {
                         className="block h-full w-full border-transparent bg-[#0F5ABC] focus-within:bg-white transition-colors duration-400 py-2 pl-14 pr-3 text-white focus:text-base-text placeholder-white focus:border-transparent focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm rounded-md"
                         type="text"
                         placeholder={placeholder}
-                        onChange={e => { setSearchInput(searchInput => e.target.value);}}
+                        onChange={e => { setSearchInput && setSearchInput(searchInput => e.target.value);}}
                     />
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navbar } from '../../components';
+import { Navbar, RightSidebar } from '../../components';
 import { Products } from './Products';
 
 export const ProductsLayout = () => {
@@ -20,7 +20,9 @@ export const ProductsLayout = () => {
                     <Products searchInput={searchInput} />
                 </div>
 
-                <div className='flex flex-col w-[15%] '><p>Selam</p></div>
+                <div className='flex flex-col w-[15%] '>
+                    <RightSidebar />
+                </div>
             </div>
         </div>
     )

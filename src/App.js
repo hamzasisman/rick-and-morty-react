@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ProductDetailLayout from './pages/ProductDetail/ProductDetailLayout';
 import { ProductsLayout } from "./pages/Products";
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<ProductsLayout />} />
+            <Route path="/detail" element={<ProductDetailLayout />} />
           </Routes>
         </BrowserRouter>
 

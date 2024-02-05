@@ -15,12 +15,12 @@ export const ProductsLayout = () => {
             <Navbar setSearchInput={setSearchInput} />
 
             <div className='flex text-base-text justify-between px-5 gap-5 mt-[62px] pt-4 max-w-7xl mx-auto'>
-                <div className='flex flex-col items-end w-[20%] min-w-[200px]'><p>Selam</p></div>
+                <div className='flex flex-col items-end w-[17%] min-w-[200px]'><p>Selam</p></div>
                 <div className='flex-1'>
                     <Products searchInput={searchInput} />
                 </div>
 
-                <div className='flex flex-col w-[20%] min-w-[200px]'>
+                <div className='flex flex-col w-[17%] min-w-[200px]'>
                     <RightSidebar />
                 </div>
             </div>

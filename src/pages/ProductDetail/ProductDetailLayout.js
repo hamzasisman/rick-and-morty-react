@@ -17,12 +17,12 @@ const ProductDetailLayout = () => {
             <Navbar />
 
             <div className='flex text-base-text justify-between px-5 gap-5 mt-[62px] pt-4 max-w-7xl mx-auto'>
-                <div className='flex flex-col w-[20%] min-w-[200px]'><p>Selam</p></div>
+                <div className='flex flex-col w-[17%] min-w-[200px]'><p>Selam</p></div>
                 <div className='flex-1'>
                     <ProductDetail product={product} />
                 </div>
 
-                <div className='flex flex-col w-[20%]  min-w-[200px]'>
+                <div className='flex flex-col w-[17%]  min-w-[200px]'>
                     <RightSidebar />
                 </div>
             </div>

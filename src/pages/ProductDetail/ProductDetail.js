@@ -16,7 +16,7 @@ const ProductDetail = (props) => {
             <div className='flex flex-col lg:flex-row gap-5 lg:gap-10'>
                 <div className='lg:min-w-max'>
                     <img
-                        className='rounded-[10px] mx-auto w-full lg:w-[30vw] max-w-[500px] !aspect-[640/480]'
+                        className='rounded-[10px] mx-auto w-full lg:w-[30vw] max-w-[400px] !aspect-[640/480]'
                         src={product.image}
                     />
                 </div>

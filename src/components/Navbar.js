@@ -1,11 +1,15 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { LogoYatay } from '../assets/img'
 import Search from './Search'
+import { formatPrice } from './utility'
 
 const Navbar = (props) => {
 
-    const {setSearchInput} = props
+    const {setSearchInput} = props;
+
+    const price = useSelector(state => state.productStore.price);
 
     const navigate = useNavigate();
 
@@ -45,7 +49,7 @@ const Navbar = (props) => {
                                 clipRule="evenodd"
                             />
                         </svg>
-                        <p className='min-w-max'>117.000 tl</p>
+                        <p className='min-w-max'>{formatPrice(price)}</p>
                     </div>
                     <div className='flex gap-1 items-center'>
                         <svg
@@ -66,7 +70,7 @@ const Navbar = (props) => {
                                 clipRule="evenodd"
                             />
                         </svg>
-                        <p className='min-w-max'>Hamza Şişman</p>
+                        <p className='min-w-max'>Hamza</p>
                     </div>
                 </div>
             </div>

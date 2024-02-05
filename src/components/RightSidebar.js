@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { changePrice } from '../store/ProductSlice';
 import { Add } from '../assets/img';
 import Modal from './Modal';
 import { formatPrice } from './utility';
 
 const RightSidebar = () => {
 
+  const price = useSelector(state => state.productStore.price);
+  const dispatch = useDispatch();
+
   const [chart, setChart] = useState(JSON.parse(localStorage.getItem('chart')));
-  const [totalPrice, setTotalPrice] = useState(0);
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState({});
 
@@ -33,7 +37,8 @@ const RightSidebar = () => {
       chart.map((item) => tmpTotalPrice = tmpTotalPrice + parseInt(item.price))
     )
 
-    setTotalPrice(totalPrice => formatPrice(tmpTotalPrice))
+    dispatch(changePrice(tmpTotalPrice))
+
   }, [chart])
 
   return (
@@ -90,7 +95,7 @@ const RightSidebar = () => {
       <div className='shadow-content bg-white py-5 px-3 w-full flex flex-col gap-3'>
         <p className='font-bold'>
           <span>Total Price: </span>
-          <span className='text-primary'>{totalPrice}</span>
+          <span className='text-primary'>{formatPrice(price)}</span>
         </p>
         <button
           className='bg-primary rounded-[10px] h-[40px] text-white text-center hover:opacity-80 focus:opacity-80'
@@ -109,7 +114,7 @@ const RightSidebar = () => {
         >
           {modalContent.element === "error" &&
             <>
-            <p className='font-bold text-[18px] mb-5'>Inform Message</p>
+              <p className='font-bold text-[18px] mb-5'>Inform Message</p>
               <p>What will be done when this button is clicked is not specified in the details of the project.</p>
             </>
           }

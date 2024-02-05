@@ -1,4 +1,5 @@
 import React from 'react'
+import { formatPrice } from '../../components/utility';
 
 const ProductDetail = (props) => {
 
@@ -22,7 +23,7 @@ const ProductDetail = (props) => {
                 </div>
                 <div>
                     <p className='text-[24px] font-bold'>{product.name}</p>
-                    <p className='font-bold text-primary text-[24px]'>{product.price} ₺</p>
+                    <p className='font-bold text-primary text-[24px]'>{formatPrice(product.price)}</p>
                     <button
                         className='bg-primary w-full my-5 rounded-[10px] h-[40px] text-white text-center hover:opacity-80 focus:opacity-80'
                         type='button'

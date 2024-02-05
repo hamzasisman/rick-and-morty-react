@@ -12,6 +12,19 @@ export const OpenModal = (overlay, modal) => {
     modal.current.classList.remove('hidden');
 }
 
+//Para birimi formatlıyoruz
+export const formatPrice = (price) => {
+
+    var formattedOutput = new Intl.NumberFormat('tr-TR', {
+        style: 'currency',
+        currency: 'TRY',
+        minimumFractionDigits: 2,
+    });
+
+    //Baştaki '₺' işaretini silip sona ekliyoruz
+    return formattedOutput.format(price).replace('₺', '') + ' ₺'
+}
+
 export const ModalOverlay = forwardRef((props, ref) => {
     return (
         <>

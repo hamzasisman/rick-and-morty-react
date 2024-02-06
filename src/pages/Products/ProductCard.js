@@ -1,18 +1,15 @@
-import React from 'react'
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { formatDate, formatPrice } from '../../components/utility';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
-const ProductCard = (props) => {
-
-    const product = props.product;
-
+const ProductCard = ({ product }) => {
     const navigate = useNavigate();
-
-    let chart = JSON.parse(localStorage.getItem('chart')) || [];
+    const [chart, setChart] = useLocalStorage('chart', []);
 
     const handleClick = () => {
-        chart.push(product)
-        localStorage.setItem('chart', JSON.stringify(chart))
+        setChart([...chart, product]);
+        window.location.reload();
     };
 
     return (
@@ -42,7 +39,7 @@ const ProductCard = (props) => {
                 <span className='tooltip-top'>Added</span>
             </button>
         </div>
-    )
-}
+    );
+};
 
-export default ProductCard
+export default ProductCard;

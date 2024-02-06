@@ -4,13 +4,14 @@ import { changePrice } from '../store/ProductSlice';
 import { Add } from '../assets/img';
 import Modal from './Modal';
 import { formatPrice } from './utility';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 const RightSidebar = () => {
 
   const price = useSelector(state => state.productStore.price);
   const dispatch = useDispatch();
 
-  const [chart, setChart] = useState(JSON.parse(localStorage.getItem('chart')));
+  const [chart, setChart] = useLocalStorage('chart', null);
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState({});
 
@@ -30,22 +31,20 @@ const RightSidebar = () => {
   };
 
   useEffect(() => {
-    localStorage.setItem('chart', JSON.stringify(chart))
-
-    let tmpTotalPrice = 0;
-    chart && chart.length > 0 && (
-      chart.map((item) => tmpTotalPrice = tmpTotalPrice + parseInt(item.price))
-    )
-
-    dispatch(changePrice(tmpTotalPrice))
-
-  }, [chart])
+    let tmpTotalPrice =  0;
+    if (chart && chart.length >  0) {
+      chart.forEach((item) => {
+        tmpTotalPrice += parseInt(item.price,  10);
+      });
+    }
+    dispatch(changePrice(tmpTotalPrice));
+  }, [chart, dispatch]);
 
   return (
     <div className='w-full flex flex-col gap-5'>
       <div className='shadow-content bg-white py-5 px-3 w-full flex flex-col gap-3'>
         {
-          chart.map((item, index, array) => {
+          chart?.map((item, index, array) => {
 
             const printedIds = [];
 
@@ -83,7 +82,7 @@ const RightSidebar = () => {
           })
         }
         {
-          chart.length === 0 && (
+          chart?.length === 0 && (
             <div className='flex flex-col items-center gap-1'>
               <img className='w-8 h-8' src={Add}></img>
               <p className='text-center'>Add items to cart to list products</p>

@@ -1,15 +1,16 @@
 import React from 'react'
 import { formatPrice } from '../../components/utility';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 const ProductDetail = (props) => {
 
     const { product } = props;
 
-    let chart = JSON.parse(localStorage.getItem('chart')) || [];
+    const [chart, setChart] = useLocalStorage('chart', []);
 
     const handleClick = () => {
-        chart.push(product)
-        localStorage.setItem('chart', JSON.stringify(chart))
+        setChart([...chart, product]);
+        window.location.reload();
     };
 
     return (

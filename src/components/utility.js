@@ -26,13 +26,20 @@ export const formatPrice = (price) => {
 }
 
 
-//Tarihi gg/aa/yyyy ss.dd.ss şeklinde formatlıyoruz
+//Tarihi gg aa yyyy ss.dd.ss şeklinde formatlıyoruz
 export const formatDate = (date) => {
-    const options = { day: 'numeric', month: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
-    const formattedDate = new Date(date).toLocaleDateString('tr-TR', options);
-  
-    return formattedDate;
-  };
+    const turkishMonths = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+    const options = { day: '2-digit', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+    const formattedDate = new Date(date).toLocaleString('tr-TR', options);
+    const turkishMonth = formattedDate.split(' ')[1];
+    const turkishMonthIndex = turkishMonths.indexOf(turkishMonth);
+    const englishMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const englishMonth = englishMonths[turkishMonthIndex];
+    const englishDate = formattedDate.replace(turkishMonth, englishMonth);
+
+    return englishDate;
+};
+
 
 export const ModalOverlay = forwardRef((props, ref) => {
     return (

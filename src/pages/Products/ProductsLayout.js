@@ -14,7 +14,6 @@ export const ProductsLayout = () => {
         sortType: 0,
         brandIds: [],
         modelIds: [],
-        searchText: ""
     });
 
     const getProducts = async () => {
@@ -62,6 +61,7 @@ export const ProductsLayout = () => {
                                     <Products
                                         searchInput={searchInput}
                                         sortType={sortType}
+                                        detailSearch={detailSearch}
                                         data={data}
                                         setData={setData}
                                         setLoading={setLoading}

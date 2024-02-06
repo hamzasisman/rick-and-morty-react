@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React, { useEffect, useState } from 'react'
+import NoRecordsFound from './NoRecordsFound';
 import Search from './Search';
 
 const LeftSidebar = (props) => {
@@ -7,7 +8,9 @@ const LeftSidebar = (props) => {
     const { sortType, setSortType, data, detailSearch, setDetailSearch } = props;
 
     const [brandSearchInput, setBrandSearchInput] = useState("");
+    const [filteredBrands, setFilteredBrands] = useState([]);
     const [modelSearchInput, setModelSearchInput] = useState("");
+    const [filteredModels, setFilteredModels] = useState([]);
 
     //Data'nın içinde yer alan tüm brandleri bir array'de topluyoruz
     const brandArray = [...new Set(data.map(item => item.brand))];
@@ -29,6 +32,10 @@ const LeftSidebar = (props) => {
         { id: 2, text: "Price high to low" },
         { id: 3, text: "Price low to high" }
     ]
+
+    const handleSortTypeClick = (sortType) => {
+        setDetailSearch({ ...detailSearch, sortType: sortType });
+    }
 
     const handleBrandClick = (brandId) => {
         setDetailSearch({ ...detailSearch, brandIds: [...detailSearch.brandIds, brandId] });
@@ -54,6 +61,19 @@ const LeftSidebar = (props) => {
         }
     };
 
+    //Araam yaptıkça listelenecek brand'lerin güncellenmesini sağlıyoruz
+    useEffect(() => {
+        let tmpFilteredBrands = brands.filter((brand) => brand.brand.includes(brandSearchInput))
+        setFilteredBrands(filteredBrands => tmpFilteredBrands)
+    }, [brandSearchInput])
+
+    //Araam yaptıkça listelenecek model'lerin güncellenmesini sağlıyoruz
+    useEffect(() => {
+        let tmpFilteredModels = models.filter((model) => model.model.includes(modelSearchInput))
+        setFilteredModels(filteredModels => tmpFilteredModels)
+    }, [modelSearchInput])
+
+
     return (
         <div className='w-full flex flex-col gap-5'>
             <div>
@@ -64,7 +84,7 @@ const LeftSidebar = (props) => {
                             <div key={index} className="flex gap-2 items-center">
                                 <button
                                     id={item.id}
-                                    onClick={(e) => setSortType(parseInt(e.target.id))}
+                                    onClick={(e) => {setSortType(parseInt(e.target.id)); handleSortTypeClick(item.id)}}
                                     type="button"
                                     className={`w-6 h-6 bg-white border rounded-full cursor-pointer flex items-center justify-center  ${sortType === item.id ? 'border-primary' : ''}`}
                                 >
@@ -85,8 +105,10 @@ const LeftSidebar = (props) => {
                         <div className='-my-3'>
                             <Search setSearchInput={setBrandSearchInput} className="!text-[#BFBFBF]" inputClassName="!border-card !bg-white !text-base-text !placeholder-[#BFBFBF]" />
                         </div>
-                        <div className='h-[90px] overflow-y-scroll flex flex-col gap-3'>
-                            {brands.map((brand, index) => (
+                        <div className={classNames("h-[90px] flex flex-col gap-3", {
+                            "overflow-y-scroll": filteredBrands.length > 3
+                        })}>
+                            {filteredBrands.map((brand, index) => (
                                 <div key={index} className="flex gap-2 items-center">
                                     <div className="flex items-center">
                                         <input
@@ -107,6 +129,9 @@ const LeftSidebar = (props) => {
                                     <p>{brand.brand}</p>
                                 </div>
                             ))}
+                            {filteredBrands.length === 0 && (
+                                <NoRecordsFound />
+                            )}
                         </div>
                     </div>
                 </div>
@@ -119,8 +144,10 @@ const LeftSidebar = (props) => {
                         <div className='-my-3'>
                             <Search setSearchInput={setModelSearchInput} className="!text-[#BFBFBF]" inputClassName="!border-card !bg-white !text-base-text !placeholder-[#BFBFBF]" />
                         </div>
-                        <div className='h-[90px] overflow-y-scroll flex flex-col gap-3'>
-                            {models.map((model, index) => (
+                        <div className={classNames("h-[90px] flex flex-col gap-3", {
+                            "overflow-y-scroll": filteredModels.length > 3
+                        })}>
+                            {filteredModels.map((model, index) => (
                                 <div key={index} className="flex gap-2 items-center">
                                     <div className="flex items-center">
                                         <input
@@ -133,7 +160,9 @@ const LeftSidebar = (props) => {
                                             htmlFor={`model_${index}`}
                                             className={`${handleSelectedModelCheckbox(model.id)} mr-2 w-4 h-4 rounded-[3px] cursor-pointer duration-500 flex items-center justify-center`}
                                         >
-                                            <span className={classNames('text-inherit text-[16px] material-symbols-outlined animate-fadeIn font-bold', { 'hidden': !detailSearch.modelIds.includes(model.id) })}>
+                                            <span className={classNames('text-inherit text-[16px] material-symbols-outlined animate-fadeIn font-bold', {
+                                                'hidden': !detailSearch.modelIds.includes(model.id)
+                                            })}>
                                                 done
                                             </span>
                                         </label>
@@ -141,6 +170,10 @@ const LeftSidebar = (props) => {
                                     <p>{model.model}</p>
                                 </div>
                             ))}
+
+                            {filteredModels.length === 0 && (
+                                <NoRecordsFound />
+                            )}
                         </div>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ import ProductCards from './ProductCards';
 
 export const Products = (props) => {
 
-    const { searchInput, sortType, data, setData, setLoading } = props
+    const { searchInput, sortType, detailSearch, data, setData, setLoading } = props
 
     const limit = parseInt(process.env.REACT_APP_TABLE_LIMIT);
 
@@ -21,6 +21,8 @@ export const Products = (props) => {
         setStart(start => 0);
         setCurrentPage(currentPage => 1);
     }
+
+    console.log(detailSearch)
 
     useEffect(() => {
         resetValue();

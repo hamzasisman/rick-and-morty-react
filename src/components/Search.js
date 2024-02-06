@@ -32,7 +32,7 @@ const Search = (props) => {
                         </svg>
                     </label>
                     <input
-                        className={`block h-full w-full border border-transparent bg-[#0F5ABC] focus-within:bg-white transition-colors duration-400 py-2 pl-14 pr-3 text-white focus:text-base-text placeholder-white/80 focus:border-transparent focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm rounded-md ${inputClassName}`}
+                        className={`block h-full w-full border border-transparent bg-[#0F5ABC] focus-within:bg-white transition-colors duration-400 py-2 pl-10 pr-3 text-white focus:text-base-text placeholder-white/80 focus:border-transparent focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm rounded-md ${inputClassName}`}
                         type="text"
                         placeholder="Search"
                         onChange={e => { setSearchInput && setSearchInput(searchInput => e.target.value);}}

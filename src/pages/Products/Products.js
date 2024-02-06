@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Loading, NoRecordsFound, Pagination } from '../../components';
-import { GetProducts } from '../../services/Services';
+import { NoRecordsFound, Pagination } from '../../components';
 import ProductCards from './ProductCards';
 
 export const Products = (props) => {
 
-    const { searchInput, sortType } = props
+    const { searchInput, sortType, data, setData, setLoading } = props
 
-    const [data, setData] = useState(null)
     const limit = parseInt(process.env.REACT_APP_TABLE_LIMIT);
-    const [loading, setLoading] = useState(true);
+
     const [start, setStart] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     //Toplam verinin uzunluğu
@@ -17,21 +15,6 @@ export const Products = (props) => {
     const [searchedData, setSearchedData] = useState([])
     //Sayfa başına gösterilecek veri
     const [filteredData, setFilteredData] = useState([])
-
-    const getProducts = async () => {
-
-        setLoading(loading => true);
-
-        const result = await GetProducts();
-
-        if (result) {
-            setData(result)
-            setTotalRecord(totalRecord => result && result.length);
-        } else {
-            console.log("Ürünler yüklenemedi!");
-        }
-        setLoading(loading => false);
-    }
 
     //Arama verileri değiştiğinde değerleri sıfırlıyoruz
     const resetValue = () => {
@@ -81,39 +64,25 @@ export const Products = (props) => {
         setData(data => sortedData)
     }, [sortType])
 
-    useEffect(() => {
-        getProducts();
-    }, []);
-
-
     return (
         <div className='w-full'>
-            {loading && (
-                <Loading />
-            )}
+            {filteredData.length > 0 &&
+                <ProductCards data={filteredData} />
+            }
 
-            {
-                !loading && (
-                    <>
-                        {filteredData.length > 0 &&
-                            <ProductCards data={filteredData} />
-                        }
-
-                        {filteredData.length === 0 &&
-                            <NoRecordsFound />
-                        }
-                        {data &&
-                            <Pagination
-                                totalCount={totalRecord}
-                                limit={limit}
-                                start={start}
-                                setStart={setStart}
-                                currentPage={currentPage}
-                                setCurrentPage={setCurrentPage}
-                                setLoading={setLoading}
-                            />
-                        }</>
-                )
+            {filteredData.length === 0 &&
+                <NoRecordsFound />
+            }
+            {data &&
+                <Pagination
+                    totalCount={totalRecord}
+                    limit={limit}
+                    start={start}
+                    setStart={setStart}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    setLoading={setLoading}
+                />
             }
         </div>
     )

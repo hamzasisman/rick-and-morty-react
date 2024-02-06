@@ -2,7 +2,7 @@ import React from 'react';
 
 const Search = (props) => {
 
-    const { placeholder, setSearchInput } = props;
+    const { placeholder, setSearchInput, className, inputClassName } = props;
 
     return (
         <>
@@ -12,7 +12,7 @@ const Search = (props) => {
                 <label htmlFor="search-field" className="sr-only">
                     Search
                 </label>
-                <div className="relative w-full text-white focus-within:text-[#BFBFBF]">
+                <div className={`relative w-full text-white focus-within:text-[#BFBFBF] ${className}`}>
                     <label
                         htmlFor="search-field"
                         className="cursor-pointer hover:opacity-80 absolute inset-y-0 left-0 flex items-center px-3"
@@ -32,9 +32,9 @@ const Search = (props) => {
                         </svg>
                     </label>
                     <input
-                        className="block h-full w-full border-transparent bg-[#0F5ABC] focus-within:bg-white transition-colors duration-400 py-2 pl-14 pr-3 text-white focus:text-base-text placeholder-white focus:border-transparent focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm rounded-md"
+                        className={`block h-full w-full border border-transparent bg-[#0F5ABC] focus-within:bg-white transition-colors duration-400 py-2 pl-14 pr-3 text-white focus:text-base-text placeholder-white/80 focus:border-transparent focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm rounded-md ${inputClassName}`}
                         type="text"
-                        placeholder={placeholder}
+                        placeholder="Search"
                         onChange={e => { setSearchInput && setSearchInput(searchInput => e.target.value);}}
                     />
                 </div>

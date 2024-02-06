@@ -32,7 +32,7 @@ const Navbar = (props) => {
                     />
                 </button>
                 <div className='flex-1'>
-                    <Search placeholder="Ara..." setSearchInput={setSearchInput} />
+                    <Search setSearchInput={setSearchInput} />
                 </div>
                 <div className='text-white w-[17%] flex gap-3 min-w-[200px]'>
                     <div className='flex gap-1 items-center'>

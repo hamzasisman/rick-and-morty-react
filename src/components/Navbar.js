@@ -22,7 +22,7 @@ const Navbar = (props) => {
         <div className='fixed w-full top-0 z-30 flex h-[62px] flex-shrink-0 bg-[#1269db] shadow-lg px-5'>
             <div className="flex flex-1 justify-between px-4 gap-5 max-w-7xl mx-auto">
                 <button
-                    className="flex flex-shrink-0 mb-[3px] items-center w-[17%] min-w-[200px]"
+                    className="hidden sm:flex flex-shrink-0 mb-[3px] items-center w-[17%] min-w-[200px]"
                     onClick={handleClick}
                 >
                     <img
@@ -34,7 +34,7 @@ const Navbar = (props) => {
                 <div className='flex-1'>
                     <Search setSearchInput={setSearchInput} />
                 </div>
-                <div className='text-white w-[17%] flex gap-3 min-w-[200px]'>
+                <div className='text-white sm:w-[17%] flex gap-3 sm:min-w-[200px]'>
                     <div className='flex gap-1 items-center'>
                         <svg
                             className="h-5 w-5"
@@ -70,7 +70,7 @@ const Navbar = (props) => {
                                 clipRule="evenodd"
                             />
                         </svg>
-                        <p className='min-w-max'>Hamza</p>
+                        <p className='hidden sm:block min-w-max'>Hamza</p>
                     </div>
                 </div>
             </div>

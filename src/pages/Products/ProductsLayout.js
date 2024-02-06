@@ -7,13 +7,12 @@ export const ProductsLayout = () => {
 
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(true);
-    const [sortType, setSortType] = useState(0);
     const [searchInput, setSearchInput] = useState("");
 
     const [detailSearch, setDetailSearch] = useState({
         sortType: 0,
-        brandIds: [],
-        modelIds: [],
+        brands: [],
+        models: [],
     });
 
     const getProducts = async () => {
@@ -25,7 +24,7 @@ export const ProductsLayout = () => {
         if (result) {
             setData(result)
         } else {
-            console.log("Ürünler yüklenemedi!");
+            console.log("Products could not be loaded!");
         }
         setLoading(loading => false);
     }
@@ -50,8 +49,6 @@ export const ProductsLayout = () => {
                             <>
                                 <div className='flex flex-col items-end w-[17%] min-w-[200px]'>
                                     <LeftSidebar
-                                        sortType={sortType}
-                                        setSortType={setSortType}
                                         data={data}
                                         detailSearch={detailSearch}
                                         setDetailSearch={setDetailSearch}
@@ -60,7 +57,6 @@ export const ProductsLayout = () => {
                                 <div className='flex-1'>
                                     <Products
                                         searchInput={searchInput}
-                                        sortType={sortType}
                                         detailSearch={detailSearch}
                                         data={data}
                                         setData={setData}

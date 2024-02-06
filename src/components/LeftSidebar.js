@@ -5,7 +5,7 @@ import Search from './Search';
 
 const LeftSidebar = (props) => {
 
-    const { sortType, setSortType, data, detailSearch, setDetailSearch } = props;
+    const { data, detailSearch, setDetailSearch } = props;
 
     const [brandSearchInput, setBrandSearchInput] = useState("");
     const [filteredBrands, setFilteredBrands] = useState([]);
@@ -37,24 +37,29 @@ const LeftSidebar = (props) => {
         setDetailSearch({ ...detailSearch, sortType: sortType });
     }
 
-    const handleBrandClick = (brandId) => {
-        setDetailSearch({ ...detailSearch, brandIds: [...detailSearch.brandIds, brandId] });
+    const handleBrandClick = (brandName) => {
+        if (!detailSearch.brands.includes(brandName)) {
+            setDetailSearch({ ...detailSearch, brands: [...detailSearch.brands, brandName] });
+        }
     };
 
-    const handleModelClick = (modelId) => {
-        setDetailSearch({ ...detailSearch, modelIds: [...detailSearch.modelIds, modelId] });
+    const handleModelClick = (modelName) => {
+        if (!detailSearch.models.includes(modelName)) {
+            setDetailSearch({ ...detailSearch, models: [...detailSearch.models, modelName] });
+        }
     };
 
-    const handleSelectedBrandCheckbox = (id) => {
-        if (detailSearch.brandIds.includes(id)) {
+
+    const handleSelectedBrandCheckbox = (brand) => {
+        if (detailSearch.brands.includes(brand)) {
             return 'bg-primary border border-primary text-white'
         } else {
             return 'border border-[#aaaaaa]'
         }
     };
 
-    const handleSelectedModelCheckbox = (id) => {
-        if (detailSearch.modelIds.includes(id)) {
+    const handleSelectedModelCheckbox = (model) => {
+        if (detailSearch.models.includes(model)) {
             return 'bg-primary border border-primary text-white'
         } else {
             return 'border border-[#aaaaaa]'
@@ -84,11 +89,11 @@ const LeftSidebar = (props) => {
                             <div key={index} className="flex gap-2 items-center">
                                 <button
                                     id={item.id}
-                                    onClick={(e) => {setSortType(parseInt(e.target.id)); handleSortTypeClick(item.id)}}
+                                    onClick={() => handleSortTypeClick(item.id)}
                                     type="button"
-                                    className={`w-6 h-6 bg-white border rounded-full cursor-pointer flex items-center justify-center  ${sortType === item.id ? 'border-primary' : ''}`}
+                                    className={`w-6 h-6 bg-white border rounded-full cursor-pointer flex items-center justify-center  ${detailSearch.sortType === item.id ? 'border-primary' : ''}`}
                                 >
-                                    <span className={`w-[14px] h-[14px] pointer-events-none rounded-full ${sortType === item.id ? 'bg-primary' : ''}`}></span>
+                                    <span className={`w-[14px] h-[14px] pointer-events-none rounded-full ${detailSearch.sortType === item.id ? 'bg-primary' : ''}`}></span>
 
                                 </button>
                                 <p>{item.text}</p>
@@ -115,13 +120,13 @@ const LeftSidebar = (props) => {
                                             id={`brand_${index}`}
                                             type="checkbox"
                                             className="hidden peer"
-                                            onChange={() => handleBrandClick(brand.id)}
+                                            onChange={() => handleBrandClick(brand.brand)}
                                         />
                                         <label
                                             htmlFor={`brand_${index}`}
-                                            className={`${handleSelectedBrandCheckbox(brand.id)} mr-2 w-4 h-4 rounded-[3px] cursor-pointer duration-500 flex items-center justify-center`}
+                                            className={`${handleSelectedBrandCheckbox(brand.brand)} mr-2 w-4 h-4 rounded-[3px] cursor-pointer duration-500 flex items-center justify-center`}
                                         >
-                                            <span className={classNames('text-inherit text-[16px] material-symbols-outlined animate-fadeIn font-bold', { 'hidden': !detailSearch.brandIds.includes(brand.id) })}>
+                                            <span className={classNames('text-inherit text-[16px] material-symbols-outlined animate-fadeIn font-bold', { 'hidden': !detailSearch.brands.includes(brand.brand) })}>
                                                 done
                                             </span>
                                         </label>
@@ -154,14 +159,14 @@ const LeftSidebar = (props) => {
                                             id={`model_${index}`}
                                             type="checkbox"
                                             className="hidden peer"
-                                            onChange={() => handleModelClick(model.id)}
+                                            onChange={() => handleModelClick(model.model)}
                                         />
                                         <label
                                             htmlFor={`model_${index}`}
-                                            className={`${handleSelectedModelCheckbox(model.id)} mr-2 w-4 h-4 rounded-[3px] cursor-pointer duration-500 flex items-center justify-center`}
+                                            className={`${handleSelectedModelCheckbox(model.model)} mr-2 w-4 h-4 rounded-[3px] cursor-pointer duration-500 flex items-center justify-center`}
                                         >
                                             <span className={classNames('text-inherit text-[16px] material-symbols-outlined animate-fadeIn font-bold', {
-                                                'hidden': !detailSearch.modelIds.includes(model.id)
+                                                'hidden': !detailSearch.models.includes(model.model)
                                             })}>
                                                 done
                                             </span>
